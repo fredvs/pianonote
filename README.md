@@ -1,6 +1,7 @@
 # PianoNote
 Gives the frequency of piano note.
 Or gives nearest note of a frequency.
+
 Does calculation for each note or use pre-calculated frequency table.
 
 For english (a,b,c,...) or solfege (do,re,mi,...) notation.
