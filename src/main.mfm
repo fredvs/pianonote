@@ -3006,22 +3006,22 @@ object mainfo: tmainfo
     end
     object tstringedit2: tstringedit
       color = -2147483645
-      frame.caption = 'Note'
+      frame.caption = 'Note name'
       frame.captionpos = cp_left
       frame.captiondist = 4
       frame.localprops = []
       frame.localprops1 = [frl1_captiondist]
       frame.template = tframecomp2
       frame.outerframe = (
-        33
+        68
         0
         0
         0
       )
       taborder = 1
-      bounds_x = 103
+      bounds_x = 76
       bounds_y = 112
-      bounds_cx = 93
+      bounds_cx = 128
       bounds_cy = 34
       textflags = [tf_xcentered, tf_ycentered, tf_noselect]
       textflagsactive = [tf_xcentered, tf_ycentered]
@@ -3066,10 +3066,12 @@ object mainfo: tmainfo
     textflags = [tf_xcentered, tf_ycentered]
     reffontheight = 17
     object tbooleanedit1: tbooleanedit
+      color = -2147483645
       frame.caption = 'Use precalculated table'
       frame.captiondist = 4
       frame.localprops = []
       frame.localprops1 = [frl1_captiondist]
+      frame.template = tframecomp2
       frame.outerframe = (
         0
         3
@@ -3084,22 +3086,22 @@ object mainfo: tmainfo
   end
   object tstringedit1: tstringedit
     color = -2147483645
-    frame.caption = 'Note'
+    frame.caption = 'Note name'
     frame.captionpos = cp_left
     frame.captiondist = 4
     frame.localprops = []
     frame.localprops1 = [frl1_captiondist]
     frame.template = tframecomp2
     frame.outerframe = (
-      33
+      68
       0
       0
       0
     )
     taborder = 1
-    bounds_x = 111
+    bounds_x = 92
     bounds_y = 8
-    bounds_cx = 77
+    bounds_cx = 112
     bounds_cy = 30
     textflags = [tf_xcentered, tf_ycentered, tf_noselect]
     textflagsactive = [tf_xcentered, tf_ycentered]

@@ -258,11 +258,9 @@ begin
 
   if tbooleanedit1.Value = False then
   begin
-
     { Calculate the frequency of the note using the semitone offset }
     if err = 0 then
       noteFrequency := A4_Freq * exp(ln(root12of2) * semitoneOffset);
-
     { Output the result }
     if err = 0 then
     begin
@@ -270,11 +268,14 @@ begin
       tstringdisp1.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(noteFrequency, ffFixed, 8, 2) + ' Hz';
     end;
   end
-  else if err = 0 then
+  else
   begin
+   if err = 0 then
+   begin
     trealedit1.Value  := RoundTo(frequencies[octave + 1, noteBaseOffset + 1], -2);
     tstringdisp1.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(frequencies[octave + 1, noteBaseOffset + 1], ffFixed, 8, 2) + ' Hz';
-  end;
+   end;
+  end; 
 
 end;
 
