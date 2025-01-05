@@ -14,4 +14,4 @@ There is binary release for Linux 64 bit and Windows 32/64 bit:
 
 https://github.com/fredvs/pianonote/releases/
 
-![pianonote4](https://github.com/user-attachments/assets/87e0cb18-4472-4e6d-957f-2a6810a17006)
+![pianonote5](https://github.com/user-attachments/assets/dc254ef7-9950-478b-8ba9-f5e305488041)
