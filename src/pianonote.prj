@@ -912,7 +912,7 @@ findhistory=5
  query
 findoptions=1
 editpos=1
- 0,2
+ 0,11
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/pianonote.pas
@@ -928,7 +928,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=530
+windowlayout=531
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -978,7 +978,7 @@ windowlayout=530
  rcy=0
  wsize=0
  active=0
- visible=0
+ visible=1
  [threadsfo]
  splitdir=0
  useroptions=268451945
@@ -1336,7 +1336,7 @@ windowlayout=530
  [componentpalettefo]
  splitdir=0
  useroptions=268460139
- stackedunder=objectinspectorfo
+ stackedunder=targetconsolefo
  parent=
  mdistate=0
  nx=0
@@ -1393,8 +1393,9 @@ windowlayout=530
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/pianonote/src/pianonote.pas
- history=3
+ value=/home/fred/pianonote/src/main.pas
+ history=4
+  /home/fred/pianonote/src/pianonote.pas
   /home/fred/pianonote/src/main.pas
   /home/fred/ideU/src/layout
   ${PROJECTDIR}/main.pas

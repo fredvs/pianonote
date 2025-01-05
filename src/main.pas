@@ -62,9 +62,6 @@ const
   NotesPerOctave = 12; { Number of semitones per octave }
   NoteNames: array[0..11] of string = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B');
   NoteNamesSolfege: array[0..11] of string = ('do', 'do#', 're', 're#', 'mi', 'fa', 'fa#', 'sol', 'sol#', 'la', 'la#', 'si');
-
-  // NumNotes = 12;  { Number of semitones per octave }
-  //  A4Frequency = 440.0;  { Reference frequency for A4 (440 Hz) }
   A4Index        = 9;  { A4 is the 10th note in the scale (0-indexed), hence position 9 in the octave }
   A4Octave       = 4;  { A4 is in the 4th octave (C0 starts at octave 0) }
 
@@ -154,9 +151,10 @@ begin
       err := 1;
       mainfo.tstringdisp1.Text := 'Error: Invalid note name!';
     end;
-  end
-  else if uppercase(note[1]) = 'C' then
-    noteBaseOffset := 0  { C is 9 semitones below A in the same octave }
+  end else
+  begin
+   if uppercase(note[1]) = 'C' then
+    noteBaseOffset := 0
   else if uppercase(note[1]) = 'D' then
     noteBaseOffset := 2
   else if uppercase(note[1]) = 'E' then
@@ -173,8 +171,9 @@ begin
   begin
     err := 1;
     mainfo.tstringdisp1.Text := 'Error: Invalid note name!';
-  end{ Base semitone offsets relative using C0 as reference};
-
+  end;
+ end;
+ 
   if err = 0 then
   begin
     { Adjust for accidentals (sharp '#' or flat 'b') if applicable }
