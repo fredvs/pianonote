@@ -1,5 +1,6 @@
 # PianoNote
 Gives the frequency of piano note.
+Or gives nearest note of a frequency.
 
 For english (a,b,c,...) or solfege (do,re,mi,...) notation.
 
