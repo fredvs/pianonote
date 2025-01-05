@@ -1,2 +1,2 @@
 # pianonote
-Gives the frequency of piano note. For English (letters) or solfege notation.
+Gives the frequency of piano note. For english (a,b,c,...) or solfege (do,re,mi,...) notation.
