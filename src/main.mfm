@@ -1,8 +1,12 @@
 object mainfo: tmainfo
-  bounds_x = 370
-  bounds_y = 247
+  bounds_x = 526
+  bounds_y = 240
   bounds_cx = 316
-  bounds_cy = 339
+  bounds_cy = 338
+  bounds_cxmin = 316
+  bounds_cymin = 338
+  bounds_cxmax = 316
+  bounds_cymax = 338
   container.color = 15921906
   container.frame.localprops = []
   container.frame.localprops1 = []
@@ -10,9 +14,10 @@ object mainfo: tmainfo
     0
     0
     316
-    339
+    338
   )
-  caption = 'PianoNote'
+  options = [fo_main, fo_terminateonclose, fo_screencentered, fo_autoreadstat, fo_autowritestat, fo_savepos, fo_savezorder, fo_savestate]
+  caption = 'PianoNote v3'
   icon.options = [bmo_masked, bmo_graymask]
   icon.origformat = 'png'
   icon.image = {

@@ -296,6 +296,8 @@ begin
       powerFactor := n / 12.0;
       frequencies[i + 1, j + 1] := A4Freq * exp(powerFactor * ln(2));  { Calculate frequency using exp and ln }
     end;
+    
+  caption := 'PianoNote v3 for ' + platformtext;
 end;
 
 procedure tmainfo.onfreqex(const Sender: TObject);
