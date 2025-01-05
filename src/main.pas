@@ -38,32 +38,32 @@ uses
 
 type
   tmainfo = class(tmainform)
-    tstringedit1: tstringedit;
-    tbutton1: TButton;
-    tstringdisp1: tstringdisp;
-    trealedit1: trealedit;
-    timagelist5: timagelist;
-    tframecomp2: tframecomp;
-    tfacecomp3: tfacecomp;
-    trealedit2: trealedit;
-    tstringdisp2: tstringdisp;
-    tstringdisp3: tstringdisp;
-    tbutton2: TButton;
-    tstringedit2: tstringedit;
-    tstringdisp4: tstringdisp;
-    tbooleanedit1: tbooleanedit;
+    ed_notename1: tstringedit;
+    bu_inputnote: TButton;
+    di_note: tstringdisp;
+    ed_frequency1: trealedit;
+    timagelist: timagelist;
+    tframecomp: tframecomp;
+    tfacecomp: tfacecomp;
+    ed_frequency2: trealedit;
+    pa_name: tstringdisp;
+    pa_frequency: tstringdisp;
+    bu_inputfreq: TButton;
+    ed_notename2: tstringedit;
+    di_frequency: tstringdisp;
+    bo_usetable: tbooleanedit;
     procedure onexec(const Sender: TObject);
     procedure oncreaex(const Sender: TObject);
     procedure onfreqex(const Sender: TObject);
   end;
 
 const
-  A4_Freq        = 440.0;
   NotesPerOctave = 12; { Number of semitones per octave }
   NoteNames: array[0..11] of string = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B');
   NoteNamesSolfege: array[0..11] of string = ('do', 'do#', 're', 're#', 'mi', 'fa', 'fa#', 'sol', 'sol#', 'la', 'la#', 'si');
   A4Index        = 9;  { A4 is the 10th note in the scale (0-indexed), hence position 9 in the octave }
   A4Octave       = 4;  { A4 is in the 4th octave (C0 starts at octave 0) }
+  A4Freq         = 440.0;
 
 var
   mainfo: tmainfo;
@@ -129,7 +129,7 @@ function GetSemitoneOffset(note: string; octave: integer): integer;
 begin
   err := 0;
 
-  if mainfo.tbooleanedit1.Value = False then
+  if mainfo.bo_usetable.Value = False then
   begin
     { Base semitone offsets relative to A4 (using C0 as reference) }
     if uppercase(note[1]) = 'C' then
@@ -149,9 +149,9 @@ begin
     else
     begin
       err := 1;
-      mainfo.tstringdisp1.Text := 'Error: Invalid note name!';
+      mainfo.di_note.Text := 'Error: Invalid note name!';
     end;
-  end else
+  end else  // use pre-calculated table
   begin
    if uppercase(note[1]) = 'C' then
     noteBaseOffset := 0
@@ -170,7 +170,7 @@ begin
   else
   begin
     err := 1;
-    mainfo.tstringdisp1.Text := 'Error: Invalid note name!';
+    mainfo.di_note.Text := 'Error: Invalid note name!';
   end;
  end;
  
@@ -192,7 +192,7 @@ end;
 function GetFrequencyFromNoteIndex(NoteIndex: integer): double;
 begin
   // Calculate the frequency of the note n semitones away from A4
-  Result := A4_Freq * Power(2, NoteIndex / NotesPerOctave);
+  Result := A4Freq * Power(2, NoteIndex / NotesPerOctave);
 end;
 
 // Function to find the nearest note and the percentage difference in tuning
@@ -202,7 +202,7 @@ var
   NearestNoteFreq, DiffPercent: double;
 begin
   // Calculate the note index relative to A4
-  NoteIndex := Round(NotesPerOctave * Log2(Frequency / A4_Freq));
+  NoteIndex := Round(NotesPerOctave * Log2(Frequency / A4Freq));
 
   // Calculate the frequency of the nearest note based on the note index
   NearestNoteFreq := GetFrequencyFromNoteIndex(NoteIndex);
@@ -219,15 +219,15 @@ begin
   Octave := 4 + (NoteIndex div NotesPerOctave);
 
   // Output the nearest note and tuning percentage
-  mainfo.tstringdisp4.Text := 'Nearest note: ' + NoteNames[NearestNoteIndex] + IntToStr(Octave) + ' / ' +
+  mainfo.di_frequency.Text := 'Nearest note: ' + NoteNames[NearestNoteIndex] + IntToStr(Octave) + ' / ' +
     NoteNamesSolfege[NearestNoteIndex] + IntToStr(Octave);
 
   if Abs(Frequency - NearestNoteFreq) < 0.01 then
-    mainfo.tstringdisp4.Text := mainfo.tstringdisp4.Text + #10 + 'Exact frequency match!'
+    mainfo.di_frequency.Text := mainfo.di_frequency.Text + #10 + 'Exact frequency match!'
   else
-    mainfo.tstringdisp4.Text := mainfo.tstringdisp4.Text + #10 + 'Tuning needed: ' + FloatToStrF(DiffPercent * -1, ffFixed, 8, 2) + '%';
+    mainfo.di_frequency.Text := mainfo.di_frequency.Text + #10 + 'Tuning needed: ' + FloatToStrF(DiffPercent * -1, ffFixed, 8, 2) + '%';
 
-  mainfo.tstringedit2.Text := NoteNames[NearestNoteIndex] + IntToStr(Octave) + ' / ' +
+  mainfo.ed_notename2.Text := NoteNames[NearestNoteIndex] + IntToStr(Octave) + ' / ' +
     NoteNamesSolfege[NearestNoteIndex] + IntToStr(Octave);
 
 end;
@@ -235,7 +235,7 @@ end;
 procedure tmainfo.onexec(const Sender: TObject);
 begin
   err      := 0;
-  noteName := trim(tstringedit1.Value);
+  noteName := trim(ed_notename1.Value);
 
   if ((length(noteName) = 2) and (noteName[2] in ['0'..'9'])) or
     ((length(noteName) = 3) and (noteName[3] in ['0'..'9']) and (noteName[2] = '#')) or
@@ -243,7 +243,7 @@ begin
     notePart := copy(noteName, 1, length(noteName) - 1){ Extract note part (e.g., A or A#) }
   else
   begin
-    solfNote := copy(noteName, 1, length(noteName) - 1);  { Extract solfège syllable (first two characters) }
+    solfNote := copy(noteName, 1, length(noteName) - 1);  { Extract solfège syllable }
     notePart := SolfegeToNote(solfNote);  { Convert to standard note notation }
     noteName := notePart + copy(noteName, length(noteName), 1);  { Replace solfège with note name }
   end;
@@ -256,24 +256,24 @@ begin
   if err = 0 then
     semitoneOffset := GetSemitoneOffset(notePart, octave);
 
-  if tbooleanedit1.Value = False then
+  if bo_usetable.Value = False then
   begin
     { Calculate the frequency of the note using the semitone offset }
     if err = 0 then
-      noteFrequency := A4_Freq * exp(ln(root12of2) * semitoneOffset);
+      noteFrequency := A4Freq * exp(ln(root12of2) * semitoneOffset);
     { Output the result }
     if err = 0 then
     begin
-      trealedit1.Value  := RoundTo(noteFrequency, -2);
-      tstringdisp1.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(noteFrequency, ffFixed, 8, 2) + ' Hz';
+      ed_frequency1.Value  := RoundTo(noteFrequency, -2);
+      di_note.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(noteFrequency, ffFixed, 8, 2) + ' Hz';
     end;
   end
   else
   begin
    if err = 0 then
    begin
-    trealedit1.Value  := RoundTo(frequencies[octave + 1, noteBaseOffset + 1], -2);
-    tstringdisp1.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(frequencies[octave + 1, noteBaseOffset + 1], ffFixed, 8, 2) + ' Hz';
+    ed_frequency1.Value  := RoundTo(frequencies[octave + 1, noteBaseOffset + 1], -2);
+    di_note.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(frequencies[octave + 1, noteBaseOffset + 1], ffFixed, 8, 2) + ' Hz';
    end;
   end; 
 
@@ -294,15 +294,13 @@ begin
       { Calculate the number of semitone steps away from A4 (A4 = 440 Hz at octave 4) }
       n           := (i * NotesPerOctave + j) - (A4Octave * NotesPerOctave + A4Index);
       powerFactor := n / 12.0;
-      frequencies[i + 1, j + 1] := A4_Freq * exp(powerFactor * ln(2));  { Calculate frequency using exp and ln }
+      frequencies[i + 1, j + 1] := A4Freq * exp(powerFactor * ln(2));  { Calculate frequency using exp and ln }
     end;
-
 end;
 
 procedure tmainfo.onfreqex(const Sender: TObject);
 begin
-  err := 0;
-  FindNearestNote(trealedit2.Value);
+  FindNearestNote(ed_frequency2.Value);
 end;
 
 end.

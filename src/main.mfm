@@ -2965,11 +2965,11 @@ object mainfo: tmainfo
   windowopacity = -Inf
   oncreated = oncreaex
   moduleclassname = 'tmainform'
-  object tstringdisp3: tstringdisp
+  object pa_frequency: tstringdisp
     color = -2147483645
     frame.localprops = []
     frame.localprops1 = []
-    frame.template = tframecomp2
+    frame.template = tframecomp
     face.fade_pos.count = 2
     face.fade_pos.items = (
       0
@@ -2989,13 +2989,13 @@ object mainfo: tmainfo
     bounds_cy = 152
     textflags = [tf_xcentered, tf_ycentered]
     reffontheight = 17
-    object tbutton2: tbutton
+    object bu_inputfreq: tbutton
       color = -2147483645
       frame.localprops = []
       frame.localprops1 = []
-      frame.template = tframecomp2
+      frame.template = tframecomp
       face.localprops = []
-      face.template = tfacecomp3
+      face.template = tfacecomp
       bounds_x = 0
       bounds_y = 40
       bounds_cx = 300
@@ -3004,14 +3004,14 @@ object mainfo: tmainfo
       caption = 'Input the frequency in Hz'
       onexecute = onfreqex
     end
-    object tstringedit2: tstringedit
+    object ed_notename2: tstringedit
       color = -2147483645
       frame.caption = 'Note name'
       frame.captionpos = cp_left
       frame.captiondist = 4
       frame.localprops = []
       frame.localprops1 = [frl1_captiondist]
-      frame.template = tframecomp2
+      frame.template = tframecomp
       frame.outerframe = (
         68
         0
@@ -3027,11 +3027,11 @@ object mainfo: tmainfo
       textflagsactive = [tf_xcentered, tf_ycentered]
       reffontheight = 17
     end
-    object tstringdisp4: tstringdisp
+    object di_frequency: tstringdisp
       color = -2147483645
       frame.localprops = []
       frame.localprops1 = []
-      frame.template = tframecomp2
+      frame.template = tframecomp
       taborder = 2
       bounds_x = 0
       bounds_y = 68
@@ -3041,11 +3041,11 @@ object mainfo: tmainfo
       reffontheight = 17
     end
   end
-  object tstringdisp2: tstringdisp
+  object pa_name: tstringdisp
     color = -2147483645
     frame.localprops = []
     frame.localprops1 = []
-    frame.template = tframecomp2
+    frame.template = tframecomp
     face.fade_pos.count = 2
     face.fade_pos.items = (
       0
@@ -3065,13 +3065,13 @@ object mainfo: tmainfo
     bounds_cy = 168
     textflags = [tf_xcentered, tf_ycentered]
     reffontheight = 17
-    object tbooleanedit1: tbooleanedit
+    object bo_usetable: tbooleanedit
       color = -2147483645
       frame.caption = 'Use precalculated table'
       frame.captiondist = 4
       frame.localprops = []
       frame.localprops1 = [frl1_captiondist]
-      frame.template = tframecomp2
+      frame.template = tframecomp
       frame.outerframe = (
         0
         3
@@ -3084,14 +3084,14 @@ object mainfo: tmainfo
       bounds_cy = 19
     end
   end
-  object tstringedit1: tstringedit
+  object ed_notename1: tstringedit
     color = -2147483645
     frame.caption = 'Note name'
     frame.captionpos = cp_left
     frame.captiondist = 4
     frame.localprops = []
     frame.localprops1 = [frl1_captiondist]
-    frame.template = tframecomp2
+    frame.template = tframecomp
     frame.outerframe = (
       68
       0
@@ -3109,13 +3109,13 @@ object mainfo: tmainfo
     value = 'A4'
     reffontheight = 17
   end
-  object tbutton1: tbutton
+  object bu_inputnote: tbutton
     color = -2147483645
     frame.localprops = []
     frame.localprops1 = []
-    frame.template = tframecomp2
+    frame.template = tframecomp
     face.localprops = []
-    face.template = tfacecomp3
+    face.template = tfacecomp
     bounds_x = 8
     bounds_y = 40
     bounds_cx = 300
@@ -3124,11 +3124,11 @@ object mainfo: tmainfo
     caption = 'Input the note name (e.g., C4, la3, Bb3, a#3, DO4)'
     onexecute = onexec
   end
-  object tstringdisp1: tstringdisp
+  object di_note: tstringdisp
     color = -2147483645
     frame.localprops = []
     frame.localprops1 = []
-    frame.template = tframecomp2
+    frame.template = tframecomp
     taborder = 2
     bounds_x = 8
     bounds_y = 92
@@ -3137,14 +3137,14 @@ object mainfo: tmainfo
     textflags = [tf_xcentered, tf_ycentered]
     reffontheight = 17
   end
-  object trealedit1: trealedit
+  object ed_frequency1: trealedit
     color = -2147483645
     frame.caption = 'Frequency in Hz'
     frame.captionpos = cp_left
     frame.captiondist = 4
     frame.localprops = []
     frame.localprops1 = [frl1_captiondist]
-    frame.template = tframecomp2
+    frame.template = tframecomp
     frame.outerframe = (
       95
       0
@@ -3164,14 +3164,14 @@ object mainfo: tmainfo
     valuemax = 1E+038
     reffontheight = 17
   end
-  object trealedit2: trealedit
+  object ed_frequency2: trealedit
     color = -2147483645
     frame.caption = 'Frequency in Hz'
     frame.captionpos = cp_left
     frame.captiondist = 4
     frame.localprops = []
     frame.localprops1 = [frl1_captiondist]
-    frame.template = tframecomp2
+    frame.template = tframecomp
     frame.outerframe = (
       95
       0
@@ -3192,7 +3192,7 @@ object mainfo: tmainfo
     valuemax = 1E+038
     reffontheight = 17
   end
-  object timagelist5: timagelist
+  object timagelist: timagelist
     width = 4
     height = 4
     count = 8
@@ -3200,7 +3200,7 @@ object mainfo: tmainfo
     cornermask_bottomleft = #2#1
     cornermask_bottomright = #2#1
     cornermask_topright = #2#1
-    left = 197
+    left = 213
     top = 12
     image = {
       00000000020000000C0000000C000000E8000000000000000000000000000000
@@ -3216,20 +3216,20 @@ object mainfo: tmainfo
       040000000800000008000000
     }
   end
-  object tframecomp2: tframecomp
+  object tframecomp: tframecomp
     template.framei_left = 4
     template.framei_top = 2
     template.framei_right = 4
     template.framei_bottom = 2
-    template.frameimage_list = timagelist5
+    template.frameimage_list = timagelist
     template.frameimage_left = -4
     template.frameimage_top = -4
     template.frameimage_right = -4
     template.frameimage_bottom = -4
-    left = 160
+    left = 104
     top = 11
   end
-  object tfacecomp3: tfacecomp
+  object tfacecomp: tfacecomp
     template.fade_pos.count = 2
     template.fade_pos.items = (
       0

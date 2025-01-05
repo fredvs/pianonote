@@ -1336,7 +1336,7 @@ windowlayout=531
  [componentpalettefo]
  splitdir=0
  useroptions=268460139
- stackedunder=confideufo
+ stackedunder=confdebuggerfo
  parent=
  mdistate=0
  nx=0
@@ -1349,7 +1349,7 @@ windowlayout=531
  cy=129
  rcx=0
  rcy=0
- wsize=5
+ wsize=0
  active=0
  visible=0
  [componentpalettefo.componentpages]
@@ -1428,7 +1428,7 @@ windowlayout=531
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=confdebuggerfo
+ stackedunder=componentpalettefo
  parent=
  mdistate=0
  nx=0
