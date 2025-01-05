@@ -1,16 +1,16 @@
 object mainfo: tmainfo
   bounds_x = 370
   bounds_y = 247
-  bounds_cx = 320
-  bounds_cy = 303
+  bounds_cx = 316
+  bounds_cy = 339
   container.color = 15921906
   container.frame.localprops = []
   container.frame.localprops1 = []
   container.bounds = (
     0
     0
-    320
-    303
+    316
+    339
   )
   caption = 'PianoNote'
   icon.options = [bmo_masked, bmo_graymask]
@@ -2984,7 +2984,7 @@ object mainfo: tmainfo
     face.localprops = [fal_fadirection]
     taborder = 6
     bounds_x = 8
-    bounds_y = 148
+    bounds_y = 180
     bounds_cx = 300
     bounds_cy = 152
     textflags = [tf_xcentered, tf_ycentered]
@@ -3062,9 +3062,25 @@ object mainfo: tmainfo
     bounds_x = 8
     bounds_y = 4
     bounds_cx = 300
-    bounds_cy = 136
+    bounds_cy = 168
     textflags = [tf_xcentered, tf_ycentered]
     reffontheight = 17
+    object tbooleanedit1: tbooleanedit
+      frame.caption = 'Use precalculated table'
+      frame.captiondist = 4
+      frame.localprops = []
+      frame.localprops1 = [frl1_captiondist]
+      frame.outerframe = (
+        0
+        3
+        138
+        3
+      )
+      bounds_x = 72
+      bounds_y = 65
+      bounds_cx = 151
+      bounds_cy = 19
+    end
   end
   object tstringedit1: tstringedit
     color = -2147483645
@@ -3113,7 +3129,7 @@ object mainfo: tmainfo
     frame.template = tframecomp2
     taborder = 2
     bounds_x = 8
-    bounds_y = 68
+    bounds_y = 92
     bounds_cx = 300
     bounds_cy = 30
     textflags = [tf_xcentered, tf_ycentered]
@@ -3134,8 +3150,8 @@ object mainfo: tmainfo
       0
     )
     taborder = 3
-    bounds_x = 49
-    bounds_y = 104
+    bounds_x = 57
+    bounds_y = 128
     bounds_cx = 179
     bounds_cy = 30
     textflags = [tf_xcentered, tf_right, tf_ycentered, tf_noselect]
@@ -3161,8 +3177,8 @@ object mainfo: tmainfo
       0
     )
     taborder = 4
-    bounds_x = 49
-    bounds_y = 152
+    bounds_x = 57
+    bounds_y = 184
     bounds_cx = 179
     bounds_cy = 30
     textflags = [tf_xcentered, tf_right, tf_ycentered, tf_noselect]

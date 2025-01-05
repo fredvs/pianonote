@@ -32,7 +32,9 @@ uses
   msesimplewidgets,
   msedispwidgets,
   mserichstring,
-  msebitmap;
+  msebitmap,
+  msegraphedits,
+  msescrollbar;
 
 type
   tmainfo = class(tmainform)
@@ -49,6 +51,7 @@ type
     tbutton2: TButton;
     tstringedit2: tstringedit;
     tstringdisp4: tstringdisp;
+    tbooleanedit1: tbooleanedit;
     procedure onexec(const Sender: TObject);
     procedure oncreaex(const Sender: TObject);
     procedure onfreqex(const Sender: TObject);
@@ -56,9 +59,14 @@ type
 
 const
   A4_Freq        = 440.0;
-  NotesPerOctave = 12;
+  NotesPerOctave = 12; { Number of semitones per octave }
   NoteNames: array[0..11] of string = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B');
   NoteNamesSolfege: array[0..11] of string = ('do', 'do#', 're', 're#', 'mi', 'fa', 'fa#', 'sol', 'sol#', 'la', 'la#', 'si');
+
+  // NumNotes = 12;  { Number of semitones per octave }
+  //  A4Frequency = 440.0;  { Reference frequency for A4 (440 Hz) }
+  A4Index        = 9;  { A4 is the 10th note in the scale (0-indexed), hence position 9 in the octave }
+  A4Octave       = 4;  { A4 is in the 4th octave (C0 starts at octave 0) }
 
 var
   mainfo: tmainfo;
@@ -66,6 +74,8 @@ var
   noteName, notePart, solfNote: string;
   semitoneOffset, octave: integer;
   err: byte = 1;
+  frequencies: array[1..NotesPerOctave, 1..NotesPerOctave] of real;  { 12x12 array for frequencies }
+  noteBaseOffset: integer;
 
 implementation
 
@@ -119,30 +129,51 @@ end;
 
 { Function to convert note name (with optional sharp or flat) to semitone offset from A4 }
 function GetSemitoneOffset(note: string; octave: integer): integer;
-var
-  noteBaseOffset: integer;
 begin
-  err   := 0;
-  { Base semitone offsets relative to A4 (using C0 as reference) }
-  if uppercase(note[1]) = 'C' then
-    noteBaseOffset := -9  { C is 9 semitones below A in the same octave }
+  err := 0;
+
+  if mainfo.tbooleanedit1.Value = False then
+  begin
+    { Base semitone offsets relative to A4 (using C0 as reference) }
+    if uppercase(note[1]) = 'C' then
+      noteBaseOffset := -9  { C is 9 semitones below A in the same octave }
+    else if uppercase(note[1]) = 'D' then
+      noteBaseOffset := -7
+    else if uppercase(note[1]) = 'E' then
+      noteBaseOffset := -5
+    else if uppercase(note[1]) = 'F' then
+      noteBaseOffset := -4
+    else if uppercase(note[1]) = 'G' then
+      noteBaseOffset := -2
+    else if uppercase(note[1]) = 'A' then
+      noteBaseOffset := 0
+    else if uppercase(note[1]) = 'B' then
+      noteBaseOffset := 2
+    else
+    begin
+      err := 1;
+      mainfo.tstringdisp1.Text := 'Error: Invalid note name!';
+    end;
+  end
+  else if uppercase(note[1]) = 'C' then
+    noteBaseOffset := 0  { C is 9 semitones below A in the same octave }
   else if uppercase(note[1]) = 'D' then
-    noteBaseOffset := -7
-  else if uppercase(note[1]) = 'E' then
-    noteBaseOffset := -5
-  else if uppercase(note[1]) = 'F' then
-    noteBaseOffset := -4
-  else if uppercase(note[1]) = 'G' then
-    noteBaseOffset := -2
-  else if uppercase(note[1]) = 'A' then
-    noteBaseOffset := 0
-  else if uppercase(note[1]) = 'B' then
     noteBaseOffset := 2
+  else if uppercase(note[1]) = 'E' then
+    noteBaseOffset := 4
+  else if uppercase(note[1]) = 'F' then
+    noteBaseOffset := 5
+  else if uppercase(note[1]) = 'G' then
+    noteBaseOffset := 7
+  else if uppercase(note[1]) = 'A' then
+    noteBaseOffset := 9
+  else if uppercase(note[1]) = 'B' then
+    noteBaseOffset := 10
   else
   begin
     err := 1;
     mainfo.tstringdisp1.Text := 'Error: Invalid note name!';
-  end;
+  end{ Base semitone offsets relative using C0 as reference};
 
   if err = 0 then
   begin
@@ -226,22 +257,46 @@ begin
   if err = 0 then
     semitoneOffset := GetSemitoneOffset(notePart, octave);
 
-  { Calculate the frequency of the note using the semitone offset }
-  if err = 0 then
-    noteFrequency := A4_Freq * exp(ln(root12of2) * semitoneOffset);
-
-  { Output the result }
-  if err = 0 then
+  if tbooleanedit1.Value = False then
   begin
-    trealedit1.Value  := RoundTo(noteFrequency, -2);
-    tstringdisp1.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(noteFrequency, ffFixed, 8, 2) + ' Hz';
+
+    { Calculate the frequency of the note using the semitone offset }
+    if err = 0 then
+      noteFrequency := A4_Freq * exp(ln(root12of2) * semitoneOffset);
+
+    { Output the result }
+    if err = 0 then
+    begin
+      trealedit1.Value  := RoundTo(noteFrequency, -2);
+      tstringdisp1.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(noteFrequency, ffFixed, 8, 2) + ' Hz';
+    end;
+  end
+  else if err = 0 then
+  begin
+    trealedit1.Value  := RoundTo(frequencies[octave + 1, noteBaseOffset + 1], -2);
+    tstringdisp1.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(frequencies[octave + 1, noteBaseOffset + 1], ffFixed, 8, 2) + ' Hz';
   end;
+
 end;
 
 procedure tmainfo.oncreaex(const Sender: TObject);
+var
+  i, j, n: integer;  { Loop variables }
+  powerFactor: real;
 begin
   { Calculate the 12th root of 2 }
   root12of2 := exp(ln(2) / 12);
+
+  { Calculate and fill the frequencies array }
+  for i := 0 to NotesPerOctave - 1 do   { i = octave }
+    for j := 0 to NotesPerOctave - 1 do  { j = note in the octave }
+    begin
+      { Calculate the number of semitone steps away from A4 (A4 = 440 Hz at octave 4) }
+      n           := (i * NotesPerOctave + j) - (A4Octave * NotesPerOctave + A4Index);
+      powerFactor := n / 12.0;
+      frequencies[i + 1, j + 1] := A4_Freq * exp(powerFactor * ln(2));  { Calculate frequency using exp and ln }
+    end;
+
 end;
 
 procedure tmainfo.onfreqex(const Sender: TObject);
