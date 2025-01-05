@@ -19,8 +19,8 @@ order16=0
 order17=0
 order18=0
 [projectoptions]
-projectdir=/home/fred/pianonote2
-projectfilename=/home/fred/pianonote2/pianonotebyname.prj
+projectdir=/home/fred/pianonote/src
+projectfilename=/home/fred/pianonote/src/pianonotebyname.prj
 findinfiledialog=77
  [findinfileadialogfo.dir]
  filenames=1
@@ -195,7 +195,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=0
+ index=2
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=761
  width0=47
@@ -312,7 +312,8 @@ targetfile=pianonotebyname${EXEEXT}
 messageoutputfile=
 makecommand=${COMPILER}
 makedir=
-unitdirs=3
+unitdirs=4
+ ${MSELIBDIR}kernel/windows
  ${MSELIBDIR}kernel/$TARGETOSDIR/
  ${MSELIBDIR}kernel/
  ${MSELIBDIR}*/
@@ -561,19 +562,19 @@ moduletypes=0
 modulefiles=0
 befcommandon=0
 makeoptionson=5
- 63
+ 255
  27
- 63
- 36
+ 255
+ 228
  4095
 compilerusedon=29
- 4095
+ 3903
  0
  0
  0
  0
- 0
- 0
+ 64
+ 128
  0
  0
  0
@@ -604,9 +605,9 @@ debuggerusedon=6
  0
  0
 exeusedon=15
- 4095
+ 3903
  0
- 0
+ 192
  0
  0
  0
@@ -639,10 +640,11 @@ project_time=
 project_date=22:23:19 13/12/24
 project_comment=
 aftcommandon=0
-unitdirson=3
+unitdirson=4
+ 196863
  65599
- 196671
- 65599
+ 196863
+ 65791
 macroon=0
 macronames=0
 macrovalues=0
@@ -906,7 +908,7 @@ findhistory=1
  query
 findoptions=1
 editpos=1
- 0,11
+ 0,1
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/pianonotebyname.pas
@@ -922,7 +924,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=532
+windowlayout=533
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1056,7 +1058,7 @@ windowlayout=532
  [projecttreefo]
  splitdir=0
  useroptions=268484715
- stackedunder=objectinspectorfo
+ stackedunder=conflangfo
  parent=
  mdistate=3
  nx=0
@@ -1144,7 +1146,7 @@ windowlayout=532
  [breakpointsfo]
  splitdir=0
  useroptions=268451947
- stackedunder=conflangfo
+ stackedunder=projecttreefo
  parent=
  mdistate=0
  nx=0
@@ -1387,8 +1389,9 @@ windowlayout=532
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/pianonote2/pianonotebyname.pas
- history=5
+ value=/home/fred/pianonote/src/pianonotebyname.pas
+ history=6
+  /home/fred/pianonote/src/pianonotebyname.pas
   /home/fred/pianonote2/pianonotebyname.pas
   /home/fred/dbtest/main.pas
   /home/fred/dbtest/main.mfm
