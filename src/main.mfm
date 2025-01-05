@@ -2,11 +2,11 @@ object mainfo: tmainfo
   bounds_x = 526
   bounds_y = 240
   bounds_cx = 316
-  bounds_cy = 338
+  bounds_cy = 330
   bounds_cxmin = 316
-  bounds_cymin = 338
+  bounds_cymin = 330
   bounds_cxmax = 316
-  bounds_cymax = 338
+  bounds_cymax = 330
   container.color = 15921906
   container.frame.localprops = []
   container.frame.localprops1 = []
@@ -14,7 +14,7 @@ object mainfo: tmainfo
     0
     0
     316
-    338
+    330
   )
   options = [fo_main, fo_terminateonclose, fo_screencentered, fo_autoreadstat, fo_autowritestat, fo_savepos, fo_savezorder, fo_savestate]
   caption = 'PianoNote v3'
@@ -2989,7 +2989,7 @@ object mainfo: tmainfo
     face.localprops = [fal_fadirection]
     taborder = 6
     bounds_x = 8
-    bounds_y = 180
+    bounds_y = 172
     bounds_cx = 300
     bounds_cy = 152
     textflags = [tf_xcentered, tf_ycentered]
@@ -3023,11 +3023,13 @@ object mainfo: tmainfo
         0
         0
       )
+      face.localprops = []
+      face.template = tfacecomp
       taborder = 1
       bounds_x = 76
-      bounds_y = 112
+      bounds_y = 114
       bounds_cx = 152
-      bounds_cy = 34
+      bounds_cy = 30
       textflags = [tf_xcentered, tf_ycentered, tf_noselect]
       textflagsactive = [tf_xcentered, tf_ycentered]
       reffontheight = 17
@@ -3067,7 +3069,7 @@ object mainfo: tmainfo
     bounds_x = 8
     bounds_y = 4
     bounds_cx = 300
-    bounds_cy = 168
+    bounds_cy = 160
     textflags = [tf_xcentered, tf_ycentered]
     reffontheight = 17
     object bo_usetable: tbooleanedit
@@ -3105,7 +3107,7 @@ object mainfo: tmainfo
     )
     taborder = 1
     bounds_x = 92
-    bounds_y = 8
+    bounds_y = 10
     bounds_cx = 136
     bounds_cy = 30
     textflags = [tf_xcentered, tf_ycentered, tf_noselect]
@@ -3122,7 +3124,7 @@ object mainfo: tmainfo
     face.localprops = []
     face.template = tfacecomp
     bounds_x = 8
-    bounds_y = 40
+    bounds_y = 44
     bounds_cx = 300
     bounds_cy = 23
     state = [as_localcaption, as_localcolor, as_localonexecute]
@@ -3156,6 +3158,8 @@ object mainfo: tmainfo
       0
       0
     )
+    face.localprops = []
+    face.template = tfacecomp
     taborder = 3
     bounds_x = 57
     bounds_y = 128
@@ -3185,7 +3189,7 @@ object mainfo: tmainfo
     )
     taborder = 4
     bounds_x = 57
-    bounds_y = 184
+    bounds_y = 178
     bounds_cx = 179
     bounds_cy = 30
     textflags = [tf_xcentered, tf_right, tf_ycentered, tf_noselect]
@@ -3248,5 +3252,20 @@ object mainfo: tmainfo
     template.fade_direction = gd_down
     left = 16
     top = 96
+  end
+  object tfacecomp2: tfacecomp
+    template.fade_pos.count = 2
+    template.fade_pos.items = (
+      0
+      1
+    )
+    template.fade_color.count = 2
+    template.fade_color.items = (
+      16777215
+      16768422
+    )
+    template.fade_direction = gd_down
+    left = 8
+    top = 256
   end
 end

@@ -4,37 +4,11 @@ unit main;
 interface
 
 uses
-  msetypes,
-  mseglob,
-  mseguiglob,
-  mseguiintf,
-  mseapplication,
-  msestat,
-  msemenus,
-  msegui,
-  msegraphics,
-  msegraphutils,
-  mseevent,
-  mseclasses,
-  msewidgets,
-  mseforms,
-  mseact,
-  msedataedits,
-  msedropdownlist,
-  mseedit,
-  mseificomp,
-  mseificompglob,
-  mseifiglob,
-  Math,
-  msestatfile,
-  msestream,
-  SysUtils,
-  msesimplewidgets,
-  msedispwidgets,
-  mserichstring,
-  msebitmap,
-  msegraphedits,
-  msescrollbar;
+ msetypes,mseglob,mseguiglob,mseguiintf,mseapplication,msestat,msemenus,msegui,
+ msegraphics,msegraphutils,mseevent,mseclasses,msewidgets,mseforms,mseact,
+ msedataedits,msedropdownlist,mseedit,mseificomp,mseificompglob,mseifiglob,Math,
+ msestatfile,msestream,SysUtils,msesimplewidgets,msedispwidgets,mserichstring,
+ msebitmap,msegraphedits,msescrollbar;
 
 type
   tmainfo = class(tmainform)
@@ -52,6 +26,7 @@ type
     ed_notename2: tstringedit;
     di_frequency: tstringdisp;
     bo_usetable: tbooleanedit;
+   tfacecomp2: tfacecomp;
     procedure onexec(const Sender: TObject);
     procedure oncreaex(const Sender: TObject);
     procedure onfreqex(const Sender: TObject);
@@ -226,6 +201,8 @@ begin
     mainfo.di_frequency.Text := mainfo.di_frequency.Text + #10 + 'Exact frequency match!'
   else
     mainfo.di_frequency.Text := mainfo.di_frequency.Text + #10 + 'Tuning needed: ' + FloatToStrF(DiffPercent * -1, ffFixed, 8, 2) + '%';
+    
+  mainfo.ed_notename2.face.template :=  mainfo.tfacecomp2;   
 
   mainfo.ed_notename2.Text := NoteNames[NearestNoteIndex] + IntToStr(Octave) + ' / ' +
     NoteNamesSolfege[NearestNoteIndex] + IntToStr(Octave);
@@ -235,6 +212,8 @@ end;
 procedure tmainfo.onexec(const Sender: TObject);
 begin
   err      := 0;
+  ed_frequency1.face.template :=  tfacecomp;   
+
   noteName := trim(ed_notename1.Value);
 
   if ((length(noteName) = 2) and (noteName[2] in ['0'..'9'])) or
@@ -264,6 +243,7 @@ begin
     { Output the result }
     if err = 0 then
     begin
+      ed_frequency1.face.template :=  tfacecomp2;   
       ed_frequency1.Value  := RoundTo(noteFrequency, -2);
       di_note.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(noteFrequency, ffFixed, 8, 2) + ' Hz';
     end;
@@ -272,6 +252,7 @@ begin
   begin
    if err = 0 then
    begin
+    ed_frequency1.face.template :=  tfacecomp2;
     ed_frequency1.Value  := RoundTo(frequencies[octave + 1, noteBaseOffset + 1], -2);
     di_note.Text := 'The frequency of ' + noteName + ' is: ' + FloatToStrF(frequencies[octave + 1, noteBaseOffset + 1], ffFixed, 8, 2) + ' Hz';
    end;
@@ -302,6 +283,7 @@ end;
 
 procedure tmainfo.onfreqex(const Sender: TObject);
 begin
+  ed_notename2.face.template :=  mainfo.tfacecomp;   
   FindNearestNote(ed_frequency2.Value);
 end;
 
