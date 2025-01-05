@@ -43,13 +43,26 @@ type
     timagelist5: timagelist;
     tframecomp2: tframecomp;
     tfacecomp3: tfacecomp;
+    trealedit2: trealedit;
+    tstringdisp2: tstringdisp;
+    tstringdisp3: tstringdisp;
+    tbutton2: TButton;
+    tstringedit2: tstringedit;
+    tstringdisp4: tstringdisp;
     procedure onexec(const Sender: TObject);
     procedure oncreaex(const Sender: TObject);
+    procedure onfreqex(const Sender: TObject);
   end;
+
+const
+  A4_Freq        = 440.0;
+  NotesPerOctave = 12;
+  NoteNames: array[0..11] of string = ('C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B');
+  NoteNamesSolfege: array[0..11] of string = ('do', 'do#', 're', 're#', 'mi', 'fa', 'fa#', 'sol', 'sol#', 'la', 'la#', 'si');
 
 var
   mainfo: tmainfo;
-  root12of2, baseFrequency, noteFrequency: real;
+  root12of2, noteFrequency: real;
   noteName, notePart, solfNote: string;
   semitoneOffset, octave: integer;
   err: byte = 1;
@@ -145,6 +158,50 @@ begin
   end;
 end;
 
+  // Function to calculate the frequency of a note based on its distance from A4
+function GetFrequencyFromNoteIndex(NoteIndex: integer): double;
+begin
+  // Calculate the frequency of the note n semitones away from A4
+  Result := A4_Freq * Power(2, NoteIndex / NotesPerOctave);
+end;
+
+// Function to find the nearest note and the percentage difference in tuning
+procedure FindNearestNote(Frequency: double);
+var
+  NoteIndex, Octave, NearestNoteIndex: integer;
+  NearestNoteFreq, DiffPercent: double;
+begin
+  // Calculate the note index relative to A4
+  NoteIndex := Round(NotesPerOctave * Log2(Frequency / A4_Freq));
+
+  // Calculate the frequency of the nearest note based on the note index
+  NearestNoteFreq := GetFrequencyFromNoteIndex(NoteIndex);
+
+  // Calculate the percentage difference
+  DiffPercent := ((Frequency - NearestNoteFreq) / NearestNoteFreq) * 100; // Keep sign for sharp/flat indication
+
+  // Adjust index to match a note in the piano scale (mod 12)
+  NearestNoteIndex   := (NoteIndex + 9) mod NotesPerOctave;
+  if NearestNoteIndex < 0 then
+    NearestNoteIndex := NearestNoteIndex + NotesPerOctave;
+
+  // Calculate the octave number (starting from A4 = 440Hz at octave 4)
+  Octave := 4 + (NoteIndex div NotesPerOctave);
+
+  // Output the nearest note and tuning percentage
+  mainfo.tstringdisp4.Text := 'Nearest note: ' + NoteNames[NearestNoteIndex] + IntToStr(Octave) + ' / ' +
+    NoteNamesSolfege[NearestNoteIndex] + IntToStr(Octave);
+
+  if Abs(Frequency - NearestNoteFreq) < 0.01 then
+    mainfo.tstringdisp4.Text := mainfo.tstringdisp4.Text + #10 + 'Exact frequency match!'
+  else
+    mainfo.tstringdisp4.Text := mainfo.tstringdisp4.Text + #10 + 'Tuning needed: ' + FloatToStrF(DiffPercent * -1, ffFixed, 8, 2) + '%';
+
+  mainfo.tstringedit2.Text := NoteNames[NearestNoteIndex] + IntToStr(Octave) + ' / ' +
+    NoteNamesSolfege[NearestNoteIndex] + IntToStr(Octave);
+
+end;
+
 procedure tmainfo.onexec(const Sender: TObject);
 begin
   err      := 0;
@@ -171,7 +228,7 @@ begin
 
   { Calculate the frequency of the note using the semitone offset }
   if err = 0 then
-    noteFrequency := baseFrequency * exp(ln(root12of2) * semitoneOffset);
+    noteFrequency := A4_Freq * exp(ln(root12of2) * semitoneOffset);
 
   { Output the result }
   if err = 0 then
@@ -185,9 +242,12 @@ procedure tmainfo.oncreaex(const Sender: TObject);
 begin
   { Calculate the 12th root of 2 }
   root12of2 := exp(ln(2) / 12);
+end;
 
-  { Set the base frequency of A4 (440 Hz) }
-  baseFrequency := 440.0;
+procedure tmainfo.onfreqex(const Sender: TObject);
+begin
+  err := 0;
+  FindNearestNote(trealedit2.Value);
 end;
 
 end.

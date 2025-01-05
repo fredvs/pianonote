@@ -1,4 +1,4 @@
-program pianonotebyname;
+program pianonote;
 
 {$ifdef FPC}{$mode objfpc}{$h+}{$endif}
 {$ifdef FPC}

@@ -2,7 +2,7 @@ object mainfo: tmainfo
   bounds_x = 370
   bounds_y = 247
   bounds_cx = 320
-  bounds_cy = 146
+  bounds_cy = 303
   container.color = 15921906
   container.frame.localprops = []
   container.frame.localprops1 = []
@@ -10,9 +10,9 @@ object mainfo: tmainfo
     0
     0
     320
-    146
+    303
   )
-  caption = 'Piano Note By Name'
+  caption = 'PianoNote'
   icon.options = [bmo_masked, bmo_graymask]
   icon.origformat = 'png'
   icon.image = {
@@ -2965,6 +2965,107 @@ object mainfo: tmainfo
   windowopacity = -Inf
   oncreated = oncreaex
   moduleclassname = 'tmainform'
+  object tstringdisp3: tstringdisp
+    color = -2147483645
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.template = tframecomp2
+    face.fade_pos.count = 2
+    face.fade_pos.items = (
+      0
+      1
+    )
+    face.fade_color.count = 2
+    face.fade_color.items = (
+      15463154
+      11726317
+    )
+    face.fade_direction = gd_down
+    face.localprops = [fal_fadirection]
+    taborder = 6
+    bounds_x = 8
+    bounds_y = 148
+    bounds_cx = 300
+    bounds_cy = 152
+    textflags = [tf_xcentered, tf_ycentered]
+    reffontheight = 17
+    object tbutton2: tbutton
+      color = -2147483645
+      frame.localprops = []
+      frame.localprops1 = []
+      frame.template = tframecomp2
+      face.localprops = []
+      face.template = tfacecomp3
+      bounds_x = 0
+      bounds_y = 40
+      bounds_cx = 300
+      bounds_cy = 23
+      state = [as_localcaption, as_localcolor, as_localonexecute]
+      caption = 'Input the frequency in Hz'
+      onexecute = onfreqex
+    end
+    object tstringedit2: tstringedit
+      color = -2147483645
+      frame.caption = 'Note'
+      frame.captionpos = cp_left
+      frame.captiondist = 4
+      frame.localprops = []
+      frame.localprops1 = [frl1_captiondist]
+      frame.template = tframecomp2
+      frame.outerframe = (
+        33
+        0
+        0
+        0
+      )
+      taborder = 1
+      bounds_x = 103
+      bounds_y = 112
+      bounds_cx = 93
+      bounds_cy = 34
+      textflags = [tf_xcentered, tf_ycentered, tf_noselect]
+      textflagsactive = [tf_xcentered, tf_ycentered]
+      reffontheight = 17
+    end
+    object tstringdisp4: tstringdisp
+      color = -2147483645
+      frame.localprops = []
+      frame.localprops1 = []
+      frame.template = tframecomp2
+      taborder = 2
+      bounds_x = 0
+      bounds_y = 68
+      bounds_cx = 300
+      bounds_cy = 40
+      textflags = [tf_xcentered, tf_ycentered]
+      reffontheight = 17
+    end
+  end
+  object tstringdisp2: tstringdisp
+    color = -2147483645
+    frame.localprops = []
+    frame.localprops1 = []
+    frame.template = tframecomp2
+    face.fade_pos.count = 2
+    face.fade_pos.items = (
+      0
+      1
+    )
+    face.fade_color.count = 2
+    face.fade_color.items = (
+      15596779
+      12509368
+    )
+    face.fade_direction = gd_down
+    face.localprops = [fal_fadirection]
+    taborder = 5
+    bounds_x = 8
+    bounds_y = 4
+    bounds_cx = 300
+    bounds_cy = 136
+    textflags = [tf_xcentered, tf_ycentered]
+    reffontheight = 17
+  end
   object tstringedit1: tstringedit
     color = -2147483645
     frame.caption = 'Note'
@@ -2979,10 +3080,12 @@ object mainfo: tmainfo
       0
       0
     )
+    taborder = 1
     bounds_x = 111
     bounds_y = 8
     bounds_cx = 77
     bounds_cy = 30
+    textflags = [tf_xcentered, tf_ycentered, tf_noselect]
     textflagsactive = [tf_xcentered, tf_ycentered]
     onchange = onexec
     value = 'A4'
@@ -2995,7 +3098,6 @@ object mainfo: tmainfo
     frame.template = tframecomp2
     face.localprops = []
     face.template = tfacecomp3
-    taborder = 1
     bounds_x = 8
     bounds_y = 40
     bounds_cx = 300
@@ -3011,9 +3113,9 @@ object mainfo: tmainfo
     frame.template = tframecomp2
     taborder = 2
     bounds_x = 8
-    bounds_y = 72
+    bounds_y = 68
     bounds_cx = 300
-    bounds_cy = 24
+    bounds_cy = 30
     textflags = [tf_xcentered, tf_ycentered]
     reffontheight = 17
   end
@@ -3038,6 +3140,34 @@ object mainfo: tmainfo
     bounds_cy = 30
     textflags = [tf_xcentered, tf_right, tf_ycentered, tf_noselect]
     value = -Inf
+    valuedefault = -Inf
+    valuerange = 1
+    valuemin = -Inf
+    valuemax = 1E+038
+    reffontheight = 17
+  end
+  object trealedit2: trealedit
+    color = -2147483645
+    frame.caption = 'Frequency in Hz'
+    frame.captionpos = cp_left
+    frame.captiondist = 4
+    frame.localprops = []
+    frame.localprops1 = [frl1_captiondist]
+    frame.template = tframecomp2
+    frame.outerframe = (
+      95
+      0
+      0
+      0
+    )
+    taborder = 4
+    bounds_x = 49
+    bounds_y = 152
+    bounds_cx = 179
+    bounds_cy = 30
+    textflags = [tf_xcentered, tf_right, tf_ycentered, tf_noselect]
+    onchange = onfreqex
+    value = 440
     valuedefault = -Inf
     valuerange = 1
     valuemin = -Inf

@@ -20,7 +20,7 @@ order17=0
 order18=0
 [projectoptions]
 projectdir=/home/fred/pianonote/src
-projectfilename=/home/fred/pianonote/src/pianonotebyname.prj
+projectfilename=/home/fred/pianonote/src/pianonote.prj
 findinfiledialog=77
  [findinfileadialogfo.dir]
  filenames=1
@@ -195,7 +195,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=3
+ index=2
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=761
  width0=47
@@ -307,8 +307,8 @@ compnamedialog=5
  y=284
  cx=300
  cy=203
-mainfile=pianonotebyname.pas
-targetfile=pianonotebyname${EXEEXT}
+mainfile=pianonote.pas
+targetfile=pianonote${EXEEXT}
 messageoutputfile=
 makecommand=${COMPILER}
 makedir=
@@ -557,14 +557,17 @@ settingsstorage=0
 settingsprojecttree=0
 settingsautoload=0
 settingsautosave=0
-modulenames=0
-moduletypes=0
-modulefiles=0
+modulenames=1
+ MAINFO
+moduletypes=1
+ TMAINFO
+modulefiles=1
+ /home/fred/pianonote/src/main.mfm
 befcommandon=0
 makeoptionson=5
  255
  27
- 255
+ 251
  228
  4095
 compilerusedon=29
@@ -903,28 +906,41 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=query
-findhistory=1
+finddtext=tstringedit2
+findhistory=5
+ tstringedit2
+ NoteNames
+ floattostr
+ basefrequency
  query
 findoptions=1
-editpos=1
- 7,11
+editpos=2
+ 0,0
+ 0,167
 bookmarks0=0
-sourcefiles=1
- ${PROJECTDIR}/pianonotebyname.pas
-relpaths=1
- pianonotebyname.pas
-ismoduletexts=1
+bookmarks1=0
+sourcefiles=2
+ ${PROJECTDIR}/pianonote.pas
+ ${PROJECTDIR}/main.pas
+relpaths=2
+ pianonote.pas
+ main.pas
+ismoduletexts=2
  0
-modules=0
-moduleoptions=0
-visiblemodules=0
-nomenumodules=0
+ 0
+modules=1
+ /home/fred/pianonote/src/main.mfm
+moduleoptions=1
+ 0
+visiblemodules=1
+ -1
+nomenumodules=1
+ 0
 [sourcefo.files_tab]
 firsttab=0
-index=0
+index=1
 [layout]
-windowlayout=534
+windowlayout=549
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1058,7 +1074,7 @@ windowlayout=534
  [projecttreefo]
  splitdir=0
  useroptions=268484715
- stackedunder=conflangfo
+ stackedunder=_mse_mainfo_mse_
  parent=
  mdistate=3
  nx=0
@@ -1146,7 +1162,7 @@ windowlayout=534
  [breakpointsfo]
  splitdir=0
  useroptions=268451947
- stackedunder=projecttreefo
+ stackedunder=conflangfo
  parent=
  mdistate=0
  nx=0
@@ -1332,7 +1348,7 @@ windowlayout=534
  [componentpalettefo]
  splitdir=0
  useroptions=268460139
- stackedunder=confdebuggerfo
+ stackedunder=projecttreefo
  parent=
  mdistate=0
  nx=0
@@ -1390,13 +1406,9 @@ windowlayout=534
  value=Pascal
  [debuggerfo.file_history]
  value=/home/fred/pianonote/src/main.pas
- history=7
-  /home/fred/mseide-msegui/lib/common/kernel/linux/msesysintf1.pas
-  /home/fred/pianonote/src/pianonotebyname.pas
-  /home/fred/pianonote2/pianonotebyname.pas
-  /home/fred/dbtest/main.pas
-  /home/fred/dbtest/main.mfm
-  /home/fred/ideU/src/main.pas
+ history=3
+  /home/fred/pianonote/src/main.pas
+  /home/fred/ideU/src/layout
   ${PROJECTDIR}/main.pas
  [debuggerfo.project_options]
  value=1
@@ -1420,14 +1432,14 @@ windowlayout=534
  rcy=0
  [sourcefo.files_tab]
  firsttab=0
- index=0
+ index=1
  [confideufo.usedefaulteditoroptions]
  value=0
  [cpuc86_64fo]
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=componentpalettefo
+ stackedunder=confdebuggerfo
  parent=
  mdistate=0
  nx=0
@@ -1459,6 +1471,25 @@ windowlayout=534
  cy=496
  rcx=0
  rcy=0
+ [_mse_mainfo_mse_]
+ splitdir=0
+ useroptions=268451963
+ stackedunder=objectinspectorfo
+ parent=
+ mdistate=3
+ nx=0
+ ny=0
+ ncx=0
+ ncy=0
+ x=370
+ y=247
+ cx=330
+ cy=303
+ rcx=0
+ rcy=0
+ wsize=0
+ active=0
+ visible=1
 [targetconsole]
 finddtext=
 findhistory=0
